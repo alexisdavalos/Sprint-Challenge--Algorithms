@@ -6,6 +6,8 @@ a) This first problem is not a function and there is nothing happening recursive
 
 b) This second problem includes a for loop with a specific range defined by n. Inside this for loop we are defining a variable j inside the scope and creating a conditional loop for j against the value of n. Mutating then j and sum until the condition breaks. What this code is doing is creating a loop for every element of i in the range of n, which runs at linear time so `o(n)` for the first loop and `o(n)` for the second one. This makes the total runtime = `o(n^2)`
 
+o(n logn)
+
 c)
 
 ## Exercise II
@@ -40,4 +42,4 @@ change the current floor to now be (curr + high)/2
 The runtime complexity of this proposed algorithm would be linear unless we were using a data structure that could be traversed at faster than constant time.
 
 There would be two checks and loops inside of those checks.
-Therefore the runtime complexity would be o(n+n) so o(2n)
+Therefore the runtime complexity would be o(logn)

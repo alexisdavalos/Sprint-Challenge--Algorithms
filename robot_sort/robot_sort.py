@@ -136,7 +136,7 @@ class SortingRobot:
         #             # print(f'robot marker moved right: {self._list[self._position]}')
         #     # check if light is on
         #     if self.light_is_on():
-        #         # will break us out
+        #         # will bring us back to start
         #         while self.can_move_left():
         #             self.move_left()
         # robot's light will turn on for every loop
