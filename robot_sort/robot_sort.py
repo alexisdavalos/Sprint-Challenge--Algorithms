@@ -55,9 +55,11 @@ class SortingRobot:
         of it.
         This will increment the time counter by 1.
         """
+        print(f'swapping item: {self._item} with: {self._list[self._position]}')
         self._time += 1
         # Swap the held item with the list item at the robot's position
         self._item, self._list[self._position] = self._list[self._position], self._item
+
 
     def compare_item(self):
         """
@@ -96,15 +98,54 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
 
+        # boot up robot
+        self.set_light_on()
+
+        # check if robots given list has more than 1 value
+        while self.can_move_right():
+            print(f'robot marker: {self._list[self._position]}')
+            print(f'robot item: {self._item}')
+            print(f'robot list: {self._list}')
+            # item = None
+            # l = [15, 41, 58, 49, 26, 4, 28,] 
+
+            # grabs an item to it's right
+            # item starts at None and becomes first index in list
+            # item = 15
+            print('swap 1')
+            self.swap_item()
+            # item is 15 on first pass
+            # update the robots position marker by +1
+            # self._position = 1
+            self.move_right()
+
+            # check the current item to the one next to it
+            # is 15 > 41 ?
+            if self.compare_item() == -1:
+                self.move_right()
+            else:
+                print('swap 3')
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+
+            # # put whatever is now held back in the starting position, and then move right to repeat on the next set of neighbors
+            # self.move_left()
+            # self.swap_item()
+            # self.move_right()
+
+        # # reset to the leftmost position to start again
+        while self.can_move_left():
+            self.move_left()
+
+       
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [15, 41, 58, 49, 26, 4, 28]
 
     robot = SortingRobot(l)
 

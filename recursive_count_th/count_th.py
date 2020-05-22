@@ -15,10 +15,9 @@ def count_th(word):
             #recurse and check next two characters
             print(f'counting... {word[2:]}')
             return 1 + count_th(word[2:])
-            
+        # next two characters do not include "th" move a character up and recurse again
         else:
             return count_th(word[1:])
-        #change state
     else:
         print('invalid input')
         return 0
