@@ -55,9 +55,12 @@ class SortingRobot:
         of it.
         This will increment the time counter by 1.
         """
+        # print(f'swapping item: {self._item} with: {self._list[self._position]}')
+        # print(f'swapping marker: {self._list[self._position]} with: {self._item}')
         self._time += 1
         # Swap the held item with the list item at the robot's position
         self._item, self._list[self._position] = self._list[self._position], self._item
+
 
     def compare_item(self):
         """
@@ -96,15 +99,90 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        #immediately cuts loop, essentially marks this as a robot action
+        # self.set_light_on()
+
+        # while self.light_is_on():
+        #     #turns off light
+        #     self.set_light_off()
+        #     # traverses down the right side of the list starting from [0]
+        #     while self.can_move_right():
+        #         # print(f'STARTING robot list: {self._list}')
+        #         # print(f'robot marker: {self._list[self._position]}')
+        #         # print(f'robot item: {self._item}')
+        #         # swap the first time since it's set to None by default
+        #         self.swap_item()
+        #         # print(f'updated robot list: {self._list}')
+        #         self.move_right()
+        #         # compare the item held by robot vs marker
+        #         # if the item is greater than the robot's current marker
+        #         if self.compare_item() == 1:
+        #             self.swap_item()
+        #             # print(f'updated robot list: {self._list}')
+        #             self.move_left()
+        #             # print(f'robot marker moved left: {self._list[self._position]}')
+        #             self.swap_item()
+        #             # print(f'updated robot list: {self._list}')
+        #             self.move_right()
+        #             # print(f'robot marker moved right: {self._list[self._position]}')
+        #             self.set_light_on()
+        #         # if the held item is less than the marker
+        #         if self.compare_item() == -1:
+        #             self.move_left()
+        #             # print(f'robot marker moved left: {self._list[self._position]}')
+        #             self.swap_item()
+        #             # print(f'robot list: {self._list}')
+        #             self.move_right()
+        #             # print(f'robot marker moved right: {self._list[self._position]}')
+        #     # check if light is on
+        #     if self.light_is_on():
+        #         # will bring us back to start
+        #         while self.can_move_left():
+        #             self.move_left()
+        # robot's light will turn on for every loop
+        self.set_light_on()
+
+        # light indicates that some change was made on the last pass, and it needs to be checked again for further changes
+        # if no changes were made, then every entry is less than the neighbor to its immediate right. By definition, this means it is sorted.
+        while self.light_is_on():
+            #immediately cuts loop, essentially marks this as a robot action
+            self.set_light_off()
+
+             # traverses down the right side of the list starting from [0]
+            while self.can_move_right():
+                print(f'robot marker: {self._list[self._position]}')
+                print(f'robot item: {self._item}')
+                # on first iteration, swaps None with first item
+                # moves the marker to the next index
+                self.swap_item()
+                self.move_right()
+                print(f'UPDATED robot list: {self._list}')
+                # if the item is greater than the robot's current marker
+                if self.compare_item() == 1:
+                    # swaps the items
+                    self.swap_item()
+                    print(f'GREATER THAN robot list: {self._list}')
+                    # restarts action loop
+                    self.set_light_on()
+                
+                # swap the None for new item
+                self.move_left()
+                self.swap_item()
+                # move right for next loop
+                self.move_right()
+              
+
+            # reset to the leftmost position to start again
+            while self.can_move_left():
+                self.move_left()
+
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [1,15,6,55,7]
 
     robot = SortingRobot(l)
 

@@ -11,7 +11,6 @@ a)  a = 0
       a = a + n * n
 ```
 
-
 ```
 b)  sum = 0
     for i in range(n):
@@ -25,7 +24,7 @@ b)  sum = 0
 c)  def bunnyEars(bunnies):
       if bunnies == 0:
         return 0
-
+      o(n)
       return 2 + bunnyEars(bunnies-1)
 ```
 
